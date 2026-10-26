@@ -8,7 +8,10 @@ author_profile: true
 {% include base_path %}
 
 
-{% for post in site.portfolio %}
-  {% include archive-single.html %}
+{% assign portfolio_categories = site.portfolio | group_by: "category" %}
+{% for category in portfolio_categories %}
+  <h2>{{ category.name }}</h2>
+  {% for post in category.items %}
+    {% include archive-single.html %}
+  {% endfor %}
 {% endfor %}
-
